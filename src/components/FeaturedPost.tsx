@@ -21,7 +21,7 @@ interface FeaturedPostProps {
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ post, onClick, smallerPosts }) => {
     return (
         <div>
-            <h2>Destaque do Artigo</h2>
+            <h2>Artigos em destaque</h2>
             <div className="featured-post-container">
                 <Card onClick={() => onClick(post.id)} className="card featured-left">
                     <img src={post.coverImage} alt={post.title} />
