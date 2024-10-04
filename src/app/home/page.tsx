@@ -7,6 +7,7 @@ import { fetchPosts } from '../api/api';
 import BlogCard from '@/components/BlogCard';
 import Header from '@/components/Header';
 import SearchBar from '@/components/SearchBar';
+import FeaturedPost from '@/components/FeaturedPost';
 
 interface Post {
     id: number;
@@ -14,7 +15,6 @@ interface Post {
     date: string;
     coverImage: string;
     description?: string;
-    featured?: boolean;
 }
 
 const Home: React.FC = () => {
@@ -50,22 +50,33 @@ const Home: React.FC = () => {
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const featuredPost = posts.find(post => post.id === 1);
+    const smallerPosts = posts.filter(post => post.id > 1).slice(0, 2);
+
     return (
         <>
             <Header />
             <Container style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
-                <Title order={2} style={{ textAlign: 'left', margin: '40px 0' }}>Todos artigos</Title>
+                {featuredPost && (
+                    <FeaturedPost
+                        post={featuredPost}
+                        smallerPosts={smallerPosts}
+                        onClick={() => handlePostClick(featuredPost.id)}
+                    />
+                )}
 
-                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                <Title order={2} style={{ textAlign: 'left', marginTop: '20px 0' }}>Todos artigos</Title>
 
-                <div
-                    style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'space-between',
-                        gap: '20px',
-                    }}
-                >
+                <div style={{ width: '100%' }}>
+                    <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                    gap: '20px',
+                }}>
                     {filteredPosts.map((post) => (
                         <BlogCard
                             key={post.id}

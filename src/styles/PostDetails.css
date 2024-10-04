@@ -1,0 +1,70 @@
+.post-detail-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.post-content {
+    flex: 2;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.post-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.post-description {
+    margin-bottom: 20px;
+}
+
+.post-text {
+    margin-top: 20px;
+}
+
+.recommended-posts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recommended-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.recommended-card:hover {
+    transform: scale(1.05);
+}
+
+.recommended-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .post-detail-container {
+        flex-direction: column;
+    }
+
+    .recommended-posts {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .recommended-card {
+        width: 48%;
+    }
+}

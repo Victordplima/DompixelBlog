@@ -18,8 +18,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
             onChange={(e) => setSearchTerm(e.currentTarget.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            styles={(theme) => ({
+            styles={() => ({
                 input: {
+                    width: '100%',
                     padding: '12px 20px',
                     marginBottom: '15px',
                     borderRadius: '50px',
@@ -29,6 +30,9 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
                     boxShadow: isFocused ? '0 0 5px rgba(0, 7, 110, 0.5)' : 'none',
                     '&::placeholder': {
                         color: '#4a4a4a',
+                    },
+                    wrapper: {
+                        width: '100%',
                     },
                 },
             })}

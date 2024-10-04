@@ -1,0 +1,88 @@
+/* Container principal que contém os 3 cards */
+.featured-post-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.featured-left {
+    flex: 2;
+    /* O card maior ocupa 2x o espaço dos menores */
+}
+
+.featured-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    /* Os dois cards à direita ocupam o restante do espaço */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alinha o conteúdo no topo */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo para os cards menores */
+.smaller-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Alinha a imagem e o texto no topo */
+    height: 100%;
+    /* Garante que os cards menores tenham a mesma altura */
+    overflow: hidden;
+    gap: 10px;
+    /* Espaçamento consistente entre imagem e texto */
+}
+
+.smaller-card img {
+    object-fit: cover;
+    /* Ajusta a imagem sem distorcer */
+    border-radius: 10px 10px 0 0;
+}
+
+.card .mantine-Text-root {
+    margin: 5px 10px;
+    /* Reduzindo o espaçamento do texto */
+    padding: 5px 10px;
+    /* Pequeno espaçamento interno para o texto */
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .featured-post-container {
+        flex-direction: column;
+    }
+
+    .featured-left,
+    .featured-right {
+        width: 100%;
+        height: auto;
+    }
+
+    .featured-right {
+        flex-direction: row;
+        gap: 10px;
+    }
+}
