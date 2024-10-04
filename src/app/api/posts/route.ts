@@ -31,12 +31,24 @@ export async function GET() {
 
 // Rota para adicionar um novo post
 export async function POST(request: Request) {
-    const newPost = await request.json();
+    const formData = await request.formData(); // Use formData para pegar dados do formulário
+    const title = formData.get('title');
+    const description = formData.get('description');
+    const content = formData.get('content');
+    const coverImage = formData.get('coverImage');
+
     const posts = readPosts();
 
-    newPost.id = posts.length ? posts[posts.length - 1].id + 1 : 1;
-    posts.push(newPost);
+    const newPost = {
+        id: posts.length ? posts[posts.length - 1].id + 1 : 1,
+        title,
+        description,
+        content,
+        coverImage, // Salvar a imagem como um caminho
+        createdAt: new Date().toISOString(),
+    };
 
+    posts.push(newPost);
     writePosts(posts);
     console.log('Novo post adicionado:', newPost);
 

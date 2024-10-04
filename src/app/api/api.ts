@@ -55,18 +55,16 @@ export const fetchRecommendedPosts = async (excludeId: number, limit: number = 3
     return recommendedPosts;
 };
 
-export const createPost = async (newPost: { title: string; description: string; content: string; coverImage: string }) => {
+export const createPost = async (formData: FormData) => {
     const response = await fetch('/api/posts', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPost),
+        body: formData,
     });
 
     if (!response.ok) {
-        throw new Error('Erro ao criar a postagem: ' + response.statusText);
+        throw new Error('Erro ao criar postagem');
     }
 
-    return response.json();
+    return await response.json();
 };
+
