@@ -10,7 +10,7 @@ const readPosts = () => {
         return JSON.parse(jsonData);
     } catch (error) {
         console.error('Erro ao ler o arquivo JSON:', error);
-        throw error; // Re-throw para que o erro seja capturado na rota
+        throw error;
     }
 };
 
@@ -19,26 +19,26 @@ const writePosts = (posts: any) => {
         fs.writeFileSync(jsonFilePath, JSON.stringify(posts, null, 2));
     } catch (error) {
         console.error('Erro ao escrever o arquivo JSON:', error);
-        throw error; // Re-throw para que o erro seja capturado na rota
+        throw error;
     }
 };
 
 export async function GET() {
     const posts = readPosts();
-    console.log('Posts lidos:', posts); // Adicione esta linha
+    console.log('Posts lidos:', posts);
     return NextResponse.json(posts);
 }
 
+// Rota para adicionar um novo post
 export async function POST(request: Request) {
     const newPost = await request.json();
     const posts = readPosts();
 
-    newPost.id = posts.length + 1;
+    newPost.id = posts.length ? posts[posts.length - 1].id + 1 : 1;
     posts.push(newPost);
 
     writePosts(posts);
-    console.log('Novo post adicionado:', newPost); // Adicione esta linha
+    console.log('Novo post adicionado:', newPost);
 
     return NextResponse.json(newPost, { status: 201 });
 }
-

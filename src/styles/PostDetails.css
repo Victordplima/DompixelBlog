@@ -2,6 +2,8 @@
     display: flex;
     gap: 30px;
     margin-top: 20px;
+    padding: 0 10%;
+    /* Espaçamento de 10% nas laterais */
 }
 
 .post-content {
@@ -21,25 +23,29 @@
 }
 
 .post-description {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    /* Reduzido o espaço abaixo da descrição */
+    text-align: left;
 }
 
 .post-text {
     margin-top: 20px;
+    text-align: justify;
 }
 
 .recommended-posts {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-end;
+    /* Alinha o container à direita */
 }
 
 .recommended-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    /* Alinha o texto dentro do card à esquerda */
     transition: transform 0.2s;
     cursor: pointer;
 }
@@ -50,6 +56,7 @@
 
 .recommended-card img {
     width: 100%;
+    /* Ajusta a largura da imagem */
     border-radius: 10px;
 }
 
@@ -61,10 +68,14 @@
     .recommended-posts {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-end;
+        /* Alinha os cards recomendados à direita */
     }
 
     .recommended-card {
-        width: 48%;
+        width: 90%;
+        /* Mantém uma largura de 90% para dispositivos móveis */
+        max-width: 300px;
+        /* Limita a largura máxima dos cards recomendados */
     }
 }

@@ -28,6 +28,7 @@ export const fetchPostDetails = async (postId: string | string[]): Promise<Post>
         throw new Error('Erro ao buscar detalhes do post');
     }
     const data = await response.json();
+    console.log('Post Details:', data);
 
     return {
         id: data.id,
