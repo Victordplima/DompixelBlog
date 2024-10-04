@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <h1>DompixelBlog</h1>
+</p>
 
-## Getting Started
+---
+<p align="center">
+    <a href="#descricao">Descrição</a> •
+    <a href="#instalacao">Instalação</a> •
+    <a href="#tecnologias">Tecnologias Usadas</a> •
+    <a href="#dificuldades">Dificuldades</a> •
+    <a href="#deploy">Deploy</a>
+</p>
 
-First, run the development server:
+<h2 id="descricao">Descrição</h2>
+<p>
+    O <strong>DompixelBlog</strong> é uma aplicação de blog desenvolvida com <strong>Next.js</strong> e <strong>Mantine</strong>.
+    Ele permite a criação, visualização e destaque de postagens de blog, com design responsivo e moderno.
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<h2 id="instalacao">Instalação</h2>
+<ol>
+    <li>Clone este repositório: <code>git clone https://github.com/Victordplima/DompixelBlog.git</code></li>
+    <li>Navegue até o diretório do projeto: <code>cd dompixelblog</code></li>
+    <li>Instale as dependências: <code>npm install</code> ou <code>yarn install</code></li>
+    <li>Execute o projeto: <code>npm run dev</code> ou <code>yarn dev</code></li>
+    <li>Acesse a aplicação no navegador: <code>http://localhost:3000</code></li>
+</ol>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h2 id="tecnologias">Tecnologias Usadas</h2>
+<ul>
+    <li><strong>Next.js v14.2.14</strong> - Framework React para desenvolvimento front-end.</li>
+    <li><strong>Mantine v7.13.2</strong> - Biblioteca de componentes estilizados em React.</li>
+    <li><strong>TypeScript</strong></li>
+    <li><strong>Vercel</strong>.</li>
+</ul>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<h2 id="dificuldades">Dificuldades</h2>
+<p>
+    Tive dificuldades principalmente no uso do Next.js e do Mantine, pois não tenho tanta experiência com essas ferramentas. Foi desafiador conciliar o aprendizado com a implementação em um curto período de tempo, o que tornou o processo mais intenso. No entanto, consegui superar esses obstáculos e adquirir novos conhecimentos ao longo do desenvolvimento.
+</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<h2 id="deploy">Deploy</h2>
+<p align="center">
+    <strong>Deploy:</strong> <a href="https://dompixelblog.vercel.app">https://dompixelblog.vercel.app</a>
+</p>
