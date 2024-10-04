@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { fetchPosts } from '../api/api';
 import BlogCard from '@/components/BlogCard';
 import Header from '@/components/Header';
+import SearchBar from '@/components/SearchBar';
 
 interface Post {
     id: number;
@@ -20,6 +21,7 @@ const Home: React.FC = () => {
     const router = useRouter();
     const [posts, setPosts] = useState<Post[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         fetchPosts()
@@ -44,11 +46,17 @@ const Home: React.FC = () => {
         router.push(`/post/${id}`);
     };
 
+    const filteredPosts = posts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
-            <Header /> {/* Adicionando o Header aqui */}
+            <Header />
             <Container style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
                 <Title order={2} style={{ textAlign: 'left', margin: '40px 0' }}>Todos artigos</Title>
+
+                <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
                 <div
                     style={{
@@ -58,7 +66,7 @@ const Home: React.FC = () => {
                         gap: '20px',
                     }}
                 >
-                    {posts.map((post) => (
+                    {filteredPosts.map((post) => (
                         <BlogCard
                             key={post.id}
                             id={post.id}
