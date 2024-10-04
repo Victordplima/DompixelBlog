@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { TextInput } from '@mantine/core';
-import '../app/styles/SearchBar.css';
 
 interface SearchBarProps {
     searchTerm: string;
