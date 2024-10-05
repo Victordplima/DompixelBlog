@@ -1,6 +1,4 @@
-<p align="center">
-  <h1>DompixelBlog</h1>
-</p>
+<h1 align="center">DompixelBlog</h1>
 
 ---
 <p align="center">
