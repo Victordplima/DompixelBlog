@@ -41,5 +41,5 @@
 
 <h2 id="deploy">Deploy</h2>
 <p align="center">
-    <strong>Deploy:</strong> <a href="https://dompixelblog.vercel.app">https://dompixelblog.vercel.app</a>
+    <strong>Deploy:</strong> <a href="https://victordplima-dompixel-blog.vercel.app/home">https://victordplima-dompixel-blog.vercel.app/home</a>
 </p>
