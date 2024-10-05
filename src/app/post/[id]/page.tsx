@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { Container, Title, Text, Loader, Image, Card } from '@mantine/core';
 import { fetchPostDetails, fetchRecommendedPosts } from '../../api/api';
 import Header from '@/components/Header';
@@ -18,9 +18,11 @@ interface Post {
 
 const PostDetail = () => {
     const { id } = useParams();
+    const router = useRouter();
     const [post, setPost] = useState<Post | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [recommendedPosts, setRecommendedPosts] = useState<Post[]>([]);
+    const [loadingRecommended, setLoadingRecommended] = useState<boolean>(true);
 
     useEffect(() => {
         if (id) {
@@ -32,6 +34,7 @@ const PostDetail = () => {
                 })
                 .then((recommended) => {
                     setRecommendedPosts(recommended);
+                    setLoadingRecommended(false);
                 })
                 .catch((error) => {
                     console.error('Erro ao buscar detalhes do post:', error);
@@ -39,6 +42,10 @@ const PostDetail = () => {
                 });
         }
     }, [id]);
+
+    const handleRecommendedPostClick = (recommendedId: number) => {
+        router.push(`/post/${recommendedId}`);
+    };
 
     if (loading) {
         return (
@@ -73,13 +80,22 @@ const PostDetail = () => {
 
                 <div className="recommended-posts" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                     <Title order={2} style={{ textAlign: 'left' }}>Artigos Recomendados</Title>
-                    {recommendedPosts.map((recommendedPost) => (
-                        <Card key={recommendedPost.id} className="recommended-card" style={{ marginTop: '10px', width: '90%', maxWidth: '300px' }}>
-                            <Image src={recommendedPost.coverImage} alt={recommendedPost.title} style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
-                            <Text fw={700} mt="xs" style={{ textAlign: 'left', marginBottom: '5px' }}>{recommendedPost.title}</Text>
-                            <Text size="sm" style={{ textAlign: 'left' }}>{recommendedPost.description}</Text>
-                        </Card>
-                    ))}
+                    {loadingRecommended ? (
+                        <Loader />
+                    ) : (
+                        recommendedPosts.map((recommendedPost) => (
+                            <Card
+                                key={recommendedPost.id}
+                                className="recommended-card"
+                                style={{ marginTop: '10px', width: '90%', maxWidth: '300px' }}
+                                onClick={() => handleRecommendedPostClick(recommendedPost.id)}
+                            >
+                                <Image src={recommendedPost.coverImage} alt={recommendedPost.title} style={{ width: '100%', height: 'auto', borderRadius: '10px' }} />
+                                <Text fw={700} mt="xs" style={{ textAlign: 'left', marginBottom: '5px' }}>{recommendedPost.title}</Text>
+                                <Text size="sm" style={{ textAlign: 'left' }}>{recommendedPost.description}</Text>
+                            </Card>
+                        ))
+                    )}
                 </div>
             </Container>
         </>

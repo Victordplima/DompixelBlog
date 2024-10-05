@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react';
-import { Container, TextInput, Textarea, Button, Title, Paper, Image } from '@mantine/core';
+import { Container, TextInput, Textarea, Button, Title, Paper, Image, Loader } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { createPost } from '../../api/api';
 import '../../../styles/CreatePost.css';
@@ -13,6 +13,7 @@ const CreatePost = () => {
     const [content, setContent] = useState('');
     const [coverImage, setCoverImage] = useState<string | null>(null);
     const [isFocused, setIsFocused] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -29,11 +30,15 @@ const CreatePost = () => {
         formData.append('content', content);
         formData.append('coverImage', coverImage);
 
+        setIsLoading(true);
+
         try {
             await createPost(formData);
             router.push('/');
         } catch (error) {
             console.error('Erro ao criar postagem:', error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -167,10 +172,10 @@ const CreatePost = () => {
                             e.currentTarget.style.backgroundColor = '#002d9c';
                             e.currentTarget.style.boxShadow = 'none';
                         }}
+                        disabled={isLoading}
                     >
-                        Criar Postagem
+                        {isLoading ? <Loader color="white" /> : 'Criar Postagem'}
                     </Button>
-
                 </form>
 
                 {title && description && content && coverImage && (
@@ -182,7 +187,6 @@ const CreatePost = () => {
                         <p>{content}</p>
                     </Paper>
                 )}
-
             </Container>
         </>
     );
