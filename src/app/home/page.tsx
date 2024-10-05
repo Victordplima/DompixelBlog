@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Title, Loader, Container } from '@mantine/core';
+import { Title, Container } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import { fetchPosts } from '../api/api';
 import BlogCard from '@/components/BlogCard';
@@ -76,7 +76,6 @@ const Home: React.FC = () => {
                                     key={post.id}
                                     id={post.id}
                                     title={post.title}
-                                    date={post.date}
                                     description={post.description || 'Descrição não disponível.'}
                                     coverImage={post.coverImage}
                                     onClick={() => handlePostClick(post.id)}

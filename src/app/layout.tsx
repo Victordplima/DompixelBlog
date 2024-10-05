@@ -1,5 +1,12 @@
 import { MantineProvider } from '@mantine/core';
+import { Roboto } from '@next/font/google';
 import './globals.css';
+
+const roboto = Roboto({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+});
 
 export const metadata = {
     title: 'DomPixelBlog',
@@ -14,17 +21,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="pt-BR">
             <head>
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-                    rel="stylesheet"
-                />
             </head>
             <body>
-                <MantineProvider theme={{ fontFamily: 'Roboto, sans-serif' }}>
+                <MantineProvider theme={{ fontFamily: roboto.style.fontFamily }}>
                     {children}
                 </MantineProvider>
             </body>
         </html>
     );
 }
-

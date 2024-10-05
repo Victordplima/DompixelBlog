@@ -4,17 +4,26 @@ import path from 'path';
 
 const jsonFilePath = path.join(process.cwd(), 'src', 'app', 'api', 'posts.json');
 
+interface Post {
+    id: number;
+    title: string;
+    description: string;
+    content: string;
+    coverImage: string;
+    createdAt: string;
+}
+
 const readPosts = () => {
     try {
         const jsonData = fs.readFileSync(jsonFilePath, 'utf-8');
-        return JSON.parse(jsonData);
+        return JSON.parse(jsonData) as Post[];
     } catch (error) {
         console.error('Erro ao ler o arquivo JSON:', error);
         throw error;
     }
 };
 
-const writePosts = (posts: any) => {
+const writePosts = (posts: Post[]) => {
     try {
         fs.writeFileSync(jsonFilePath, JSON.stringify(posts, null, 2));
     } catch (error) {
@@ -29,9 +38,8 @@ export async function GET() {
     return NextResponse.json(posts);
 }
 
-// Rota para adicionar um novo post
 export async function POST(request: Request) {
-    const formData = await request.formData(); // Use formData para pegar dados do formulário
+    const formData = await request.formData();
     const title = formData.get('title');
     const description = formData.get('description');
     const content = formData.get('content');
@@ -39,12 +47,12 @@ export async function POST(request: Request) {
 
     const posts = readPosts();
 
-    const newPost = {
+    const newPost: Post = {
         id: posts.length ? posts[posts.length - 1].id + 1 : 1,
-        title,
-        description,
-        content,
-        coverImage, // Salvar a imagem como um caminho
+        title: title as string,
+        description: description as string,
+        content: content as string,
+        coverImage: coverImage as string,
         createdAt: new Date().toISOString(),
     };
 

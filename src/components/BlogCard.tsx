@@ -4,16 +4,17 @@ import React from 'react';
 import { Card, Image, Text, Avatar, Group } from '@mantine/core';
 import '../app/styles/BlogCard.css';
 
+// src/components/BlogCard.tsx
+
 interface BlogCardProps {
     id: number;
     title: string;
-    date: string;
     coverImage: string;
     description: string;
     onClick: (id: number) => void;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ id, title, date, coverImage, description, onClick }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ id, title, coverImage, description, onClick }) => {
     return (
         <div
             className="custom-card"
@@ -49,7 +50,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, date, coverImage, descri
                 <Group mt="md" className="card-footer">
                     <Avatar src="https://picsum.photos/50/50" radius="xl" alt="Foto do criador do post" />
                     <div>
-                        <Text size="sm" fw={700}>João da silva</Text>
+                        <Text size="sm" fw={700}>João da Silva</Text>
                         <Text size="sm">04/10/2024</Text>
                     </div>
                 </Group>
@@ -57,5 +58,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, date, coverImage, descri
         </div>
     );
 };
+
 
 export default BlogCard;
